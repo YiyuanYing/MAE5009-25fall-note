@@ -1,0 +1,239 @@
+%!TEX program = xelatex
+\documentclass[en,hazy,cyan,8pt,normal]{elegantnote}
+\title{SUSTech-25Fall-MAE5009-Note}
+
+\author{Yiyuan YING}
+\institute{Southern University of Science and Technology}
+
+% \version{2.50}
+\date{\today}
+
+\usepackage{array}
+\usepackage{float}
+\usepackage{microtype} % 微排版，通常能减少 underfull/overfull
+
+\begin{document}
+
+\maketitle
+
+\section{Stress Analysis}
+  \subsection{Stress State}
+    \begin{itemize}
+      \item Normal Stress
+      \item Shear Stress
+      \item Stress Transformation
+    \end{itemize}
+
+  \subsection{Equilibrium Equation of Stress}
+    \begin{itemize}
+      \item Body Force: Gravitational Force, Magnetic Force, Inertial Force
+      \item Surface Force: Friction Force, Pressure, Viscous Force(Fluid Flow)
+    \end{itemize}
+    \begin{equation}\label{eq:001}
+      Stress=\lim_{\Delta A \to 0} \frac{\Delta F}{\Delta A}
+    \end{equation}
+    The equation means the force at the per unit surface area. The unit is Pascal($Pa=N/m^2$).\\
+    Other common units:
+    \begin{itemize}
+      \item $1 atm \approx 10^5 Pa = 0.1 MPa$
+      \item $1 bar \approx 0.98 atm \approx 1 atm = 0.1 MPa$
+    \end{itemize}
+    Stress is a kind of tensor, different from \textbf{scalar} and \textbf{vector}.
+    \begin{itemize}
+      \item Scalar: only have magnitude, e.g. temperature, density;
+      \item Vector: have both magnitude and direction, e.g. velocity, force;
+      \item Tensor: magnitude and direction in multiple directions, e.g. stress, strain.
+    \end{itemize}
+    At a reference plane, the force $F$ is vertically upward, the normal stress $\sigma$ is perpendicular to the plane, while the shear stress $\tau$ is parallel to the plane.\\
+
+  \subsection{2D Stress}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/001.png}
+      \caption{Stress components on a reference plane}
+      \label{fig:001}
+    \end{figure}
+    For the circumstances shown in Figure~\ref{fig:001}, the normal stress and shear stress on the reference plane can be determined.
+    \begin{equation}\label{eq:002}
+      A'=\frac{A}{\sin \alpha}, S=\frac{F}{A'}=\frac{F}{A} \sin \alpha,
+      \begin{cases}
+        \tau=S\cdot\cos\alpha=\frac{F}{A} \sin \alpha \cos \alpha\\
+        \sigma=S\cdot\sin\alpha=\frac{F}{A} \sin^2 \alpha
+      \end{cases}
+    \end{equation}
+
+  \subsection{3D Stress}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/002.png}
+      \caption{Decomposition of an external force$F$}
+      \label{fig:002}
+    \end{figure}
+    As shown in Figure~\ref{fig:002}, the force $F$ applied at an arbitrary angle to the x-y plane can be resolved into a normal component $F_n$ and a shear component $F_s$. The shear component can be further decomposed into Cartesian components $F_x$ and $F_y$.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/003.png}
+      \caption{Three-Dimensional State of Stress}
+      \label{fig:003}
+    \end{figure}
+    As shown in the Figure~\ref{fig:003}, in every face has three stress components, with 1 normal stress($\sigma_x, \sigma_y, \sigma_z$) and 2 shear stresses($\tau_{xy}, \tau_{xz}, \tau_{yx}, \tau_{yz}, \tau_{zx}, \tau_{zy}$). Thus the components of stress can be expressed in a matrix form:
+    \begin{equation}\label{eq:003}
+      [\sigma]=
+      \begin{bmatrix}
+        \sigma_x & \tau_{xy} & \tau_{xz}\\
+        \tau_{yx} & \sigma_y & \tau_{yz}\\
+        \tau_{zx} & \tau_{zy} & \sigma_z
+      \end{bmatrix}
+    \end{equation}
+    The sign convention is that normal stresses causing tension are positive, while those causing compression are negative.
+    If we consider rotational equilibrium of the infinitesimal square shown as Figure~\ref{fig:004}, we can calculate the moment with respect to lower left corner:
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.4\textwidth]{image/004.png}
+      \caption{Rotational Equilibrium of an Infinitesimal Element}
+      \label{fig:004}
+    \end{figure}
+    \begin{equation}\label{eq:004}
+      \sigma_x\cdot a (a/2)-\sigma_x\cdot a (a/2)+\sigma_y\cdot a (a/2)-\sigma_y\cdot a (a/2)+\tau_{xy}\cdot a \cdot a - \tau_{yx}\cdot a \cdot a=0
+    \end{equation}
+    Thus we have:
+    \begin{equation}\label{eq:005}
+      \tau_{xy}=\tau_{yx}
+    \end{equation}
+    Similarly, we can have:
+    \begin{equation}\label{eq:006}
+      \tau_{yz}=\tau_{zy}, \tau_{zx}=\tau_{xz}
+    \end{equation}
+    Which means, the stress matrix is symmetric, and there are 3 normal stresses and 3 shear stresses, totally 6 independent stress components in 3D stress state.
+    \begin{equation}\label{eq:007}
+      [\sigma]=
+      \begin{bmatrix}
+        \sigma_x & \tau_{xy} & \tau_{xz}\\
+          & \sigma_y & \tau_{yz}\\
+        Sym. &   & \sigma_z
+      \end{bmatrix}
+    \end{equation}
+
+  \subsection{2D Stress Transformation}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/005.png}
+      \caption{Stress Transformation on an Arbitrary Plane}
+      \label{fig:005}
+    \end{figure}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/006.png}
+      \caption{Stress Components on an Inclined Plane in 2D Stress State}
+      \label{fig:006}
+    \end{figure}
+    After the transformation shown in Figure~\ref{fig:005}, the new stress components are shown in Figure~\ref{fig:006}.
+    The stress transformation equations may be derived based on force equilibrium analysis:
+    \begin{equation}\label{eq:008}
+      \sum F_x=0\Rightarrow p_x=\sigma_x\cos\alpha+\tau_{yx}\sin\alpha
+    \end{equation}
+    \begin{equation}\label{eq:009}
+      \sum F_y=0\Rightarrow p_y=\sigma_y\sin\alpha+\tau_{xy}\cos\alpha
+    \end{equation}
+    Thus we have:
+    \begin{equation}\label{eq:010}
+      \begin{cases}
+        \displaystyle \sigma_{x'}=\frac{\sigma_x+\sigma_y}{2}+\frac{\sigma_x-\sigma_y}{2}\cos2\alpha+\tau_{xy}\sin2\alpha\\
+        \displaystyle \sigma_{y'}=\frac{\sigma_x+\sigma_y}{2}-\frac{\sigma_x-\sigma_y}{2}\cos2\alpha-\tau_{xy}\sin2\alpha\\
+        \displaystyle \tau_{x'y'}=-\frac{\sigma_x-\sigma_y}{2}\sin2\alpha+\tau_{xy}\cos2\alpha
+      \end{cases}
+    \end{equation}
+    In 2D circumstances, $\sigma'$ can be calculated by $\sigma'=\mathbf{R}\sigma \mathbf{R}^T$, in which:
+    \begin{equation}\label{eq:011}
+      \sigma=
+      \begin{bmatrix}
+        \sigma_x & \tau_{yx}\\
+        \tau_{xy} & \sigma_y
+      \end{bmatrix}, 
+      \mathbf{R}=
+      \begin{bmatrix}
+        \cos\alpha & \sin\alpha\\
+        -\sin\alpha & -\cos\alpha
+      \end{bmatrix},
+      \sigma'=
+      \begin{bmatrix}
+        \sigma_x' & \tau_{yx}'\\
+        \tau_{xy}' & \sigma_y'
+      \end{bmatrix}
+    \end{equation}
+    Also, the rotation angle $\alpha$ (principle directions)can be calculated by:
+    \begin{equation}\label{eq:012}
+      \tan2\alpha=\frac{2\tau_{xy}}{\sigma_x-\sigma_y}(\alpha\in[0,\pi])
+    \end{equation}
+    \begin{equation}\label{eq:013}
+      \sin2\alpha=\pm\frac{2\tau_{xy}}{\sqrt{4\tau_{xy}^2+(\sigma_x-\sigma_y)^2}}, \quad \cos2\alpha=\frac{\sigma_x-\sigma_y}{\sqrt{4\tau_{xy}^2+(\sigma_x-\sigma_y)^2}}
+    \end{equation}
+    The principle stress can be calculated by:
+    \begin{equation}\label{eq:014}
+      \sigma_{1}=\frac{\sigma_x+\sigma_y}{2} + \sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2+\tau_{xy}^2}
+    \end{equation}
+    \begin{equation}\label{eq:015}
+      \sigma_{2}=\frac{\sigma_x+\sigma_y}{2} - \sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2+\tau_{xy}^2}
+    \end{equation}
+    \begin{equation}\label{eq:016}
+      \tau_{x'y'max}=\pm\sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2+\tau_{xy}^2}
+    \end{equation}
+  
+  \subsection{Mohr's circle of stress}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/007.png}
+      \caption{Mohr's Circle of Stress}
+      \label{fig:007}
+    \end{figure}
+    As shown in the Figure~\ref{fig:007}, 2D stress transformation can also be conveniently represented graphically in a circle. And from Equation~\ref{eq:010}, we can calculate that the equation of the circle is：
+    \begin{equation}\label{eq:017}
+      \left( \sigma - \frac{\sigma_x + \sigma_y}{2} \right)^2 + \tau^2 = \left( \frac{\sigma_x - \sigma_y}{2} \right)^2 + \tau_{xy}^2
+    \end{equation}
+    From the Equation~\ref{eq:017} we can get the center is $\displaystyle \left(\frac{\sigma_x + \sigma_y}{2}, 0\right)$ and the radius is $\displaystyle R=\sqrt{\left( \frac{\sigma_x - \sigma_y}{2} \right)^2 + \tau_{xy}^2}$.
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/008.png}
+      \caption{Rotation in the Mohr's Circle of Stress}
+      \label{fig:008}
+    \end{figure}
+    After rotating the x-y axis as shown in the Figure~\ref{fig:008}, the stress would be:
+    \begin{equation}\label{eq:018}
+      \begin{cases}
+        \displaystyle \sigma_x'=\frac{\sigma_1+\sigma_2}{2}+\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
+        \displaystyle \sigma_y'=\frac{\sigma_1+\sigma_2}{2}-\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
+        \displaystyle \tau_{x'y'}=-\frac{\sigma_1-\sigma_2}{2}\sin2\alpha
+      \end{cases}
+    \end{equation}
+  
+  \subsection{3D stress transformation}
+    Same to 2D stress transformation, the 3D stress transformation can also be expressed in matrix form:
+    \begin{equation}\label{eq:019}
+      \sigma'=\mathbf{R}\sigma \mathbf{R}^T
+    \end{equation}
+    where
+    \begin{equation}\label{eq:020}
+      \mathbf{R} =
+        \begin{bmatrix}
+        a_{11} & a_{12} & a_{13} \\
+        a_{21} & a_{22} & a_{23} \\
+        a_{31} & a_{32} & a_{33}
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        \cos(x', x) & \cos(x', y) & \cos(x', z) \\
+        \cos(y', x) & \cos(y', y) & \cos(y', z) \\
+        \cos(z', x) & \cos(z', y) & \cos(z', z)
+        \end{bmatrix}
+    \end{equation}
+    which means the direction cosines between the old and new coordinate axes.
+    And in each columns and rows of matrix $\mathbf{R}$, we have:
+    \begin{equation}\label{eq:021}
+      a_{1i}^2 + a_{2i}^2 + a_{3i}^2 = 1, \quad i=1,2,3
+    \end{equation}
+    \begin{equation}\label{eq:022}
+      a_{i1}^2 + a_{i2}^2 + a_{i3}^2 = 1, \quad i=1,2,3
+    \end{equation}
+
+  \subsection{3D principal stress}
+\end{document}
