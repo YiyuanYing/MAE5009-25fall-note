@@ -11,8 +11,13 @@
 \usepackage{array}
 \usepackage{float}
 \usepackage{microtype} % 微排版，通常能减少 underfull/overfull
+\usepackage{amsmath}   % 数学公式排版包
 \usepackage{hyperref}  % hyperref需要在cleveref之前加载
 \usepackage{cleveref}  % 添加智能引用宏包
+
+% 修改公式编号格式为"章节号-公式序号"
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\thesection-\arabic{equation}}
 
 % 自定义cleveref的引用格式 - 使用英文缩写格式
 \crefname{equation}{Eq.}{Eqs.}
@@ -25,6 +30,9 @@
 \Crefname{section}{Section}{Sections}
 \crefname{subsection}{Sec.}{Secs.}
 \Crefname{subsection}{Subsection}{Subsections}
+
+% 修复引用格式问题 - 确保引用显示完整的编号格式
+\creflabelformat{equation}{#2(#1)#3}
 
 \begin{document}
 
