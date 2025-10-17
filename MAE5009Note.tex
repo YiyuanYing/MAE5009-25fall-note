@@ -1,6 +1,6 @@
 %!TEX program = xelatex
 \documentclass[en,hazy,cyan,8pt,normal]{elegantnote}
-\title{SUSTech-25Fall-MAE5009-Note}
+\title{SUSTech - 25Fall - MAE5009 - Note}
 
 \author{Yiyuan YING}
 \institute{Southern University of Science and Technology}
@@ -236,4 +236,65 @@
     \end{equation}
 
   \subsection{3D principal stress}
+    For symmetric matrix $\mathbf{A}$, its eigenvalue and eigenvector satisfy:
+    \begin{equation}\label{eq:023}
+      \mathbf{A}\mathbf{v}=\lambda \mathbf{v}
+    \end{equation}
+    \begin{equation}\label{eq:024}
+      (\mathbf{A}-\lambda \mathbf{I})\mathbf{v}=0
+    \end{equation}
+    As the equation has non-zero $\mathbf{v}$ if and only if:
+    \begin{equation}\label{eq:025}
+      |\mathbf{A}-\lambda \mathbf{I}|=0
+    \end{equation}
+    Then we have the \textbf{Characteristic Equation} for the principle stress(in Equation~\ref{eq:023} - Equation~\ref{eq:025}, the matrix $\mathbf{A}$ can be replaced by stress matrix $[\sigma]$):
+    \begin{equation}\label{eq:026}
+      \det(\mathbf{\sigma}-\lambda \mathbf{I})=0
+    \end{equation}
+    Expand the determinant, we have:
+    \begin{equation}\label{eq:027}
+      \lambda^3 - I_1 \lambda^2 + I_2 \lambda - I_3 = 0
+    \end{equation}
+    The invariants $I_1, I_2, I_3$ are \textbf{Stress Invariants}, which means they are independent of the coordinate system:
+    \begin{equation}\label{eq:028}
+      \begin{cases}
+        I_1 = \sigma_x + \sigma_y + \sigma_z=\sigma_1 + \sigma_2 + \sigma_3\\
+        I_2 = \sigma_x \sigma_y + \sigma_y \sigma_z + \sigma_z \sigma_x - \tau_{xy}^2 - \tau_{yz}^2 - \tau_{zx}^2 = \sigma_1 \sigma_2 + \sigma_2 \sigma_3 + \sigma_3 \sigma_1\\
+        I_3 = \sigma_x \sigma_y \sigma_z + 2 \tau_{xy} \tau_{yz} \tau_{zx} - \sigma_x \tau_{yz}^2 - \sigma_y \tau_{zx}^2 - \sigma_z \tau_{xy}^2 = \sigma_1 \sigma_2 \sigma_3
+      \end{cases}
+    \end{equation}
+
+  \subsection{Differential equation of equilibrium}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/009.png}
+      \caption{Differential Element under Stress and Body Force}
+      \label{fig:009}
+    \end{figure}
+    For the force balance $\sum F=0$ in the circumstances shown in Figure~\ref{fig:009}, we have:
+    \begin{equation}\label{eq:029}
+      \begin{cases}
+        \displaystyle \frac{\partial\sigma_x}{\partial x}+\frac{\partial\tau_{yx}}{\partial y}+\frac{\partial\tau_{zx}}{\partial z}+f_x=0 \\
+        \displaystyle \frac{\partial\tau_{xy}}{\partial x}+\frac{\partial\sigma_y}{\partial y}+\frac{\partial\tau_{zy}}{\partial z}+f_y=0 \\
+        \displaystyle \frac{\partial\tau_{xz}}{\partial x}+\frac{\partial\tau_{yz}}{\partial y}+\frac{\partial\sigma_z}{\partial z}+f_z=0 &
+      \end{cases}
+    \end{equation}
+    Which can be expressed like:
+    \begin{equation}\label{eq:030}
+      \nabla \cdot \sigma + f = 0
+    \end{equation}
+    In the Equation~\ref{eq:029} and Equation~\ref{eq:030}, $f$ is the body force intensities(per unit volume), e.g. gravitational force, magnetic force, inertial force.\\
+    And when the body has acceleration, the Equation~\ref{eq:030} can be expressed as:
+    \begin{equation}\label{eq:031}
+      \nabla \cdot \sigma + f = \rho \frac{\partial^2 u}{\partial t^2}
+    \end{equation}
+    And for the torque balance $\sum M=0$ in the circumstances shown in Figure~\ref{fig:009}, we have:
+    \begin{equation}\label{eq:032}
+        \tau_{xy}=\tau_{yx}, \tau_{yz}=\tau_{zy}, \tau_{zx}=\tau_{xz}
+    \end{equation}
+    From the Equation~\ref{eq:029}, there are 6 independent unkowns in total, while only 3 equations. Thus additional equations are needed to complete the solutions of the stress distribution in a body. For example, Strain-displacement, Generalized Hooke's Law, etc.
+
+
+
+
 \end{document}
