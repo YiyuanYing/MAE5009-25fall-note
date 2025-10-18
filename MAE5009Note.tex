@@ -53,7 +53,7 @@
     \end{itemize}
 
     \begin{equation}\label{eq:001}
-      Stress=\lim_{\Delta A \to 0} \frac{\Delta F}{\Delta A}
+      \sigma=\lim_{\Delta A \to 0} \frac{\Delta F}{\Delta A}
     \end{equation}
 
     The equation means the force at the per unit surface area. The unit is Pascal($Pa=N/m^2$).
@@ -84,11 +84,13 @@
     For the circumstances shown in \cref{fig:001}, the normal stress and shear stress on the reference plane can be determined.
 
     \begin{equation}\label{eq:002}
-      A'=\frac{A}{\sin \alpha}, S=\frac{F}{A'}=\frac{F}{A} \sin \alpha,
-      \begin{cases}
-        \tau=S\cdot\cos\alpha=\frac{F}{A} \sin \alpha \cos \alpha\\
-        \sigma=S\cdot\sin\alpha=\frac{F}{A} \sin^2 \alpha
-      \end{cases}
+      A'=\frac{A}{\sin \alpha}, \quad S=\frac{F}{A'}=\frac{F}{A} \sin \alpha,\quad
+      \left\{
+      \begin{aligned}
+        \tau&=S\cdot\cos\alpha=\frac{F}{A} \sin \alpha \cos \alpha\\
+        \sigma&=S\cdot\sin\alpha=\frac{F}{A} \sin^2 \alpha
+      \end{aligned}
+      \right.
     \end{equation}
 
   \subsection{3D Stress}
@@ -185,11 +187,13 @@
     Thus we have:
 
     \begin{equation}\label{eq:010}
-      \begin{cases}
-        \displaystyle \sigma_{x'}=\frac{\sigma_x+\sigma_y}{2}+\frac{\sigma_x-\sigma_y}{2}\cos2\alpha+\tau_{xy}\sin2\alpha\\
-        \displaystyle \sigma_{y'}=\frac{\sigma_x+\sigma_y}{2}-\frac{\sigma_x-\sigma_y}{2}\cos2\alpha-\tau_{xy}\sin2\alpha\\
-        \displaystyle \tau_{x'y'}=-\frac{\sigma_x-\sigma_y}{2}\sin2\alpha+\tau_{xy}\cos2\alpha
-      \end{cases}
+      \left\{
+      \begin{aligned}
+        \sigma_{x'}&=\frac{\sigma_x+\sigma_y}{2}+\frac{\sigma_x-\sigma_y}{2}\cos2\alpha+\tau_{xy}\sin2\alpha\\
+        \sigma_{y'}&=\frac{\sigma_x+\sigma_y}{2}-\frac{\sigma_x-\sigma_y}{2}\cos2\alpha-\tau_{xy}\sin2\alpha\\
+        \tau_{x'y'}&=-\frac{\sigma_x-\sigma_y}{2}\sin2\alpha+\tau_{xy}\cos2\alpha
+      \end{aligned}
+      \right.
     \end{equation}
 
     In 2D circumstances, $\sigma'$ can be calculated by $\sigma'=\mathbf{R}\sigma \mathbf{R}^T$, in which:
@@ -262,11 +266,13 @@
     After rotating the x-y axis as shown in the \cref{fig:008}, the stress would be:
 
     \begin{equation}\label{eq:018}
-      \begin{cases}
-        \displaystyle \sigma_x'=\frac{\sigma_1+\sigma_2}{2}+\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
-        \displaystyle \sigma_y'=\frac{\sigma_1+\sigma_2}{2}-\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
-        \displaystyle \tau_{x'y'}=-\frac{\sigma_1-\sigma_2}{2}\sin2\alpha
-      \end{cases}
+      \left\{
+      \begin{aligned}
+        \sigma_x'&=\frac{\sigma_1+\sigma_2}{2}+\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
+        \sigma_y'&=\frac{\sigma_1+\sigma_2}{2}-\frac{\sigma_1-\sigma_2}{2}\cos2\alpha\\
+        \tau_{x'y'}&=-\frac{\sigma_1-\sigma_2}{2}\sin2\alpha
+      \end{aligned}
+      \right.
     \end{equation}
   
   \subsection{3D stress transformation}
@@ -354,11 +360,13 @@
     For the force balance $\sum F=0$ in the circumstances shown in \cref{fig:009}, we have:
 
     \begin{equation}\label{eq:029}
-      \begin{cases}
+      \left\{
+      \begin{aligned}
         \displaystyle \frac{\partial\sigma_x}{\partial x}+\frac{\partial\tau_{yx}}{\partial y}+\frac{\partial\tau_{zx}}{\partial z}+f_x=0 \\
         \displaystyle \frac{\partial\tau_{xy}}{\partial x}+\frac{\partial\sigma_y}{\partial y}+\frac{\partial\tau_{zy}}{\partial z}+f_y=0 \\
-        \displaystyle \frac{\partial\tau_{xz}}{\partial x}+\frac{\partial\tau_{yz}}{\partial y}+\frac{\partial\sigma_z}{\partial z}+f_z=0 &
-      \end{cases}
+        \displaystyle \frac{\partial\tau_{xz}}{\partial x}+\frac{\partial\tau_{yz}}{\partial y}+\frac{\partial\sigma_z}{\partial z}+f_z=0
+      \end{aligned}
+      \right.
     \end{equation}
 
     Which can be expressed like:
@@ -385,5 +393,168 @@
 
 \section{Strain Analysis}
 
+  \subsection{Assumptions}
+    \begin{itemize}
+      \item Infinitesimal deformation (1\% - 5\%)
+      \item Continuous materials
+      \begin{itemize}
+        \item Continuous displacement
+        \item No gap/discontinuities after displacement
+      \end{itemize}
+      \item Displacement functions must be single-valued
+    \end{itemize}
+
+  \subsection{Strain \& Displacement}
+    Same to stress, strain also can be devided into:
+
+    \begin{itemize}
+      \item \textbf{Normal Strain}: relative changes of the \textbf{length} of the objects
+      \item \textbf{Shear Strain}: changes of the \textbf{angle} of the two sides of the objects
+    \end{itemize}
+
+    And the definition of the strain is:
+
+    \begin{equation}\label{eq:033}
+      \varepsilon=\frac{\Delta L}{L}
+    \end{equation}
+
+    which is dimensionless.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/010.png}
+      \caption{Deformation of a body under load $F$}
+      \label{fig:010}
+    \end{figure}
+
+    As shown in \cref{fig:010}, under the load $F$, the strain $\varepsilon$ can be calculated by:
+
+    \begin{equation}\label{eq:034}
+      \varepsilon
+      =\frac{A'B'-AB}{AB}
+      =\frac{dx+\frac{\partial u}{\partial x}dx - dx}{dx}
+      =\frac{\frac{\partial u}{\partial x}\cdot dx}{dx}=\frac{\partial u}{\partial x}
+    \end{equation}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/011.png}
+      \caption{2D deformation of a body under load}
+      \label{fig:011}
+    \end{figure}
+
+    As shown in \cref{fig:011}, the normal strain and the shear strain can be calculated by \cref{eq:035,eq:036,eq:037}, and the deformation of the body in both horizontal and vertical can be calculated by \cref{tab:001}.
+
+    \begin{equation}\label{eq:035}
+      \varepsilon_x=\frac{A'B'-AB}{AB}=\frac{A'B'-dx}{dx}
+    \end{equation}
+
+    \begin{equation}\label{eq:036}
+      \varepsilon_y=\frac{A'D'-AD}{AD}=\frac{A'D'-dy}{dy}
+    \end{equation}
+
+    \begin{equation}\label{eq:037}
+      \gamma=\frac{\pi}{2}-\beta
+    \end{equation}
+
+    \begin{table}[H]
+      \centering
+      \caption{Deformation of a body in 2D}
+      \label{tab:001}
+      \begin{tabular}{|c|c|c|}
+        \hline
+          & Horizontal & Vertical \\
+        \hline
+        A & $u(x,y)$ & $v(x,y)$ \\
+        \hline
+        B & $u(x,y)+\frac{\partial u}{\partial x}dx$ & $v(x,y)+\frac{\partial v}{\partial x}dx$ \\
+        \hline
+        D & $u(x,y)+\frac{\partial u}{\partial y}dy$ & $v(x,y)+\frac{\partial v}{\partial y}dy$ \\
+        \hline
+      \end{tabular}
+    \end{table}
+    
+    From \cref{tab:001}, we can calculate the normal strain and shear strain in 2D:
+
+    \begin{equation}\label{eq:038}
+      (A'B')^2 = (dx + \frac{\partial u}{\partial x} dx)^2 + (\frac{\partial v}{\partial x} dx)^2 = (dx(1+\varepsilon_x)^2)\\
+      \Rightarrow (1+\varepsilon_x)^2 = (1+\frac{\partial u}{\partial x})^2 + (\frac{\partial v}{\partial x})^2
+    \end{equation}
+
+    As $\displaystyle \frac{\partial v}{\partial x}\approx 1\% - 5\%$, we have: $\displaystyle\varepsilon_x=\frac{\partial u}{\partial x}$, and similarly, $\displaystyle\varepsilon_y=\frac{\partial v}{\partial y}$. And for 3D circumstances, we have $\displaystyle\varepsilon_z=\frac{\partial w}{\partial z}$.
+
+    For the defoemation of angle, we have:
+
+    \begin{equation}\label{eq:039}
+      \theta\rightarrow 0, \theta = \tan \theta = \frac{\frac{\partial v}{\partial x}dx}{dx + \frac{\partial u}{\partial x}dx} = \frac{\frac{\partial v}{\partial x}}{1 + \frac{\partial u}{\partial x}} = \frac{\partial v}{\partial x}
+    \end{equation}
+
+    \begin{equation}\label{eq:040}
+      \lambda\rightarrow 0, -\lambda = -\tan\lambda = \frac{\frac{\partial u}{\partial y}dy}{dy + \frac{\partial v}{\partial y}dy} = \frac{\frac{\partial u}{\partial y}}{1 + \frac{\partial v}{\partial y}} = \frac{\partial u}{\partial y}
+    \end{equation}
+
+    Thus, the shear strain can be expressed as:
+
+    \begin{equation}\label{eq:041}
+      \gamma_{xy}=\frac{\pi}{2} - \beta = \theta + (-\lambda) = \frac{\partial v}{\partial x} + \frac{\partial u}{\partial y}
+    \end{equation}
+
+    Generalization to three-dimensional case, we have:
+
+    \begin{equation}\label{eq:042}
+      \left\{
+      \begin{aligned}
+        \displaystyle \varepsilon_x=\frac{\partial u}{\partial x}\\
+        \displaystyle \varepsilon_y=\frac{\partial v}{\partial y}\\
+        \displaystyle \varepsilon_z=\frac{\partial w}{\partial z}
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        \displaystyle \gamma_{xy}=\frac{\partial v}{\partial x} + \frac{\partial u}{\partial y}\\
+        \displaystyle \gamma_{yz}=\frac{\partial w}{\partial y} + \frac{\partial v}{\partial z}\\
+        \displaystyle \gamma_{zx}=\frac{\partial u}{\partial z} + \frac{\partial w}{\partial x}
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        \displaystyle \gamma_{xy}=\gamma_{yx}\\
+        \displaystyle \gamma_{yz}=\gamma_{zy}\\
+        \displaystyle \gamma_{zx}=\gamma_{xz}
+      \end{aligned}
+      \right.
+    \end{equation}
+
+  \subsection{Strain compatibility equation}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/012.png}
+      \caption{Strain Compatibility}
+      \label{fig:012}
+    \end{figure}
+
+    Six equations for the strain components are functions of only three displacement components. If six strain components are known, we have six equations for only three unknowns. There must be additional equations relate the six strain components, which are called \textbf{Strain Compatibility Equations}.\\
+
+    \begin{equation}\label{eq:043}
+      \left\{
+      \begin{aligned}
+        \frac{\partial^2 \epsilon_x}{\partial y^2} + \frac{\partial^2 \epsilon_y}{\partial x^2} &= \frac{\partial^2 \gamma_{xy}}{\partial x \partial y} \\
+        \frac{\partial^2 \epsilon_y}{\partial z^2} + \frac{\partial^2 \epsilon_z}{\partial y^2} &= \frac{\partial^2 \gamma_{yz}}{\partial y \partial z} \\
+        \frac{\partial^2 \epsilon_z}{\partial x^2} + \frac{\partial^2 \epsilon_x}{\partial z^2} &= \frac{\partial^2 \gamma_{zx}}{\partial z \partial x}
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        2 \frac{\partial^2 \epsilon_x}{\partial y \partial z} &= \frac{\partial}{\partial x} \left( -\frac{\partial \gamma_{yz}}{\partial x} + \frac{\partial \gamma_{zx}}{\partial y} + \frac{\partial \gamma_{xy}}{\partial z} \right) \\
+        2 \frac{\partial^2 \epsilon_y}{\partial z \partial x} &= \frac{\partial}{\partial y} \left( \frac{\partial \gamma_{yz}}{\partial x} - \frac{\partial \gamma_{zx}}{\partial y} + \frac{\partial \gamma_{xy}}{\partial z} \right) \\
+        2 \frac{\partial^2 \epsilon_z}{\partial x \partial y} &= \frac{\partial}{\partial z} \left( \frac{\partial \gamma_{yz}}{\partial x} + \frac{\partial \gamma_{zx}}{\partial y} - \frac{\partial \gamma_{xy}}{\partial z} \right)
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    The compatibility equation \cref{eq:043} can also be called as \textbf{Saint-Venant's compatibility equation}. In this equation, only three compatibility equations are independent. If the displacement components are single-valued, continuous functions, the strain components will automatically satisfy the compatibility equations.\\
 
 \end{document}
