@@ -38,15 +38,15 @@
 
 \maketitle
 
-\section{Stress Analysis}
-  \subsection{Stress State}
+\section{Stress Analysis}\label{sec:01}
+  \subsection{Stress State}\label{subsec:01.01}
     \begin{itemize}
       \item Normal Stress
       \item Shear Stress
       \item Stress Transformation
     \end{itemize}
 
-  \subsection{Equilibrium Equation of Stress}
+  \subsection{Equilibrium Equation of Stress}\label{subsec:01.02}
     \begin{itemize}
       \item Body Force: Gravitational Force, Magnetic Force, Inertial Force
       \item Surface Force: Friction Force, Pressure, Viscous Force(Fluid Flow)
@@ -73,7 +73,7 @@
 
     At a reference plane, the force $F$ is vertically upward, the normal stress $\sigma$ is perpendicular to the plane, while the shear stress $\tau$ is parallel to the plane.
 
-  \subsection{2D Stress}
+  \subsection{2D Stress}\label{subsec:01.03}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/001.png}
@@ -93,7 +93,7 @@
       \right.
     \end{equation}
 
-  \subsection{3D Stress}
+  \subsection{3D Stress}\label{subsec:01.04}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/002.png}
@@ -158,7 +158,7 @@
       \end{bmatrix}
     \end{equation}
 
-  \subsection{2D Stress Transformation}
+  \subsection{2D Stress Transformation}\label{subsec:01.05}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/005.png}
@@ -240,7 +240,7 @@
       \tau_{x'y'max}=\pm\sqrt{\left(\frac{\sigma_x-\sigma_y}{2}\right)^2+\tau_{xy}^2}
     \end{equation}
   
-  \subsection{Mohr's circle of stress}
+  \subsection{Mohr's circle of stress}\label{subsec:01.06}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/007.png}
@@ -275,7 +275,7 @@
       \right.
     \end{equation}
   
-  \subsection{3D stress transformation}
+  \subsection{3D stress transformation}\label{subsec:01.07}
     Same to 2D stress transformation, the 3D stress transformation can also be expressed in matrix form:
 
     \begin{equation}\label{eq:019}
@@ -310,7 +310,7 @@
       a_{i1}^2 + a_{i2}^2 + a_{i3}^2 = 1, \quad i=1,2,3
     \end{equation}
 
-  \subsection{3D principal stress}
+  \subsection{3D principal stress}\label{subsec:01.08}
     For symmetric matrix $\mathbf{A}$, its eigenvalue and eigenvector satisfy:
 
     \begin{equation}\label{eq:023}
@@ -349,7 +349,7 @@
       \end{cases}
     \end{equation}
 
-  \subsection{Differential equation of equilibrium}
+  \subsection{Differential equation of equilibrium}\label{subsec:01.09}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/009.png}
@@ -391,9 +391,9 @@
 
     From the \cref{eq:029}, there are 6 independent unkowns in total, while only 3 equations. Thus additional equations are needed to complete the solutions of the stress distribution in a body. For example, Strain-displacement, Generalized Hooke's Law, etc.
 
-\section{Strain Analysis}
+\section{Strain Analysis}\label{sec:02}
 
-  \subsection{Assumptions}
+  \subsection{Assumptions}\label{subsec:02.01}
     \begin{itemize}
       \item Infinitesimal deformation (1\% - 5\%)
       \item Continuous materials
@@ -404,7 +404,7 @@
       \item Displacement functions must be single-valued
     \end{itemize}
 
-  \subsection{Strain \& Displacement}
+  \subsection{Strain \& Displacement}\label{subsec:02.02}
     Same to stress, strain also can be devided into:
 
     \begin{itemize}
@@ -527,7 +527,7 @@
       \right.
     \end{equation}
 
-  \subsection{Strain compatibility equation}
+  \subsection{Strain compatibility equation}\label{subsec:02.03}
     \begin{figure}[H]
       \centering
       \includegraphics[width=0.6\textwidth]{image/012.png}
@@ -556,5 +556,89 @@
     \end{equation}
 
     The compatibility equation \cref{eq:043} can also be called as \textbf{Saint-Venant's compatibility equation}. In this equation, only three compatibility equations are independent. If the displacement components are single-valued, continuous functions, the strain components will automatically satisfy the compatibility equations.\\
+
+  \subsection{2D Strain Transformation}\label{subsec:02.04}
+  The transformation of strain is almost same as stress transformation.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{image/013.png}
+    \caption{2D Strain Transformation}
+    \label{fig:013}
+  \end{figure}
+
+  Similar to \cref{eq:010}, the strain transformation equations are:
+
+  \begin{equation}\label{eq:044}
+    \left\{
+    \begin{aligned}
+      \varepsilon_{x'}&=\frac{\varepsilon_x+\varepsilon_y}{2}+\frac{\varepsilon_x-\varepsilon_y}{2}\cos2\alpha+\varepsilon_{xy}\sin2\alpha\\
+      \varepsilon_{y'}&=\frac{\varepsilon_x+\varepsilon_y}{2}-\frac{\varepsilon_x-\varepsilon_y}{2}\cos2\alpha-\varepsilon_{xy}\sin2\alpha\\
+      \varepsilon_{x'y'}&=-\frac{\varepsilon_x-\varepsilon_y}{2}\sin2\alpha+\varepsilon_{xy}\cos2\alpha
+    \end{aligned}
+    \right.
+  \end{equation}
+
+  Also, similar to \cref{eq:011}, the strain transformation can be expressed by matrix form $\varepsilon' = \mathbf{R} \varepsilon \mathbf{R}^T$.
+
+  \begin{equation}\label{eq:045}
+    \varepsilon=
+    \begin{bmatrix}
+      \varepsilon_x & \varepsilon_{yx}\\
+      \varepsilon_{xy} & \varepsilon_y
+    \end{bmatrix}, 
+    \mathbf{R}=
+    \begin{bmatrix}
+      \cos\alpha & \sin\alpha\\
+      -\sin\alpha & -\cos\alpha
+    \end{bmatrix},
+    \varepsilon'=
+    \begin{bmatrix}
+      \varepsilon_x' & \varepsilon_{yx}'\\
+      \varepsilon_{xy}' & \varepsilon_y'
+    \end{bmatrix}
+  \end{equation}
+
+  Direction of principal strain can be calculated by:
+
+  \begin{equation}\label{eq:046}
+    \tan2\alpha=\frac{2\varepsilon_{xy}}{\varepsilon_x-\varepsilon_y}(\alpha\in[0,\pi])
+  \end{equation}
+
+  And the magnitudes of principal strains are:
+
+  \begin{equation}\label{eq:047}
+    \varepsilon_{1,2}=\frac{\varepsilon_x+\varepsilon_y}{2} \pm \sqrt{\left(\frac{\varepsilon_x-\varepsilon_y}{2}\right)^2+\varepsilon_{xy}^2}
+  \end{equation}
+
+  For the strain tensor in 3D:
+
+  \begin{equation}\label{eq:048}
+    [\varepsilon]=
+    \begin{bmatrix}
+      \varepsilon_x & \varepsilon_{xy} & \varepsilon_{xz}\\
+        & \varepsilon_y & \varepsilon_{yz}\\
+      Sym. &  & \varepsilon_z
+    \end{bmatrix}
+  \end{equation}
+
+  The calculation of strain invariants is similar to stress invariants in \cref{subsec:01.08}. 
+  
+  \begin{equation}\label{eq:049}
+    \det(\mathbf{\varepsilon}-\lambda \mathbf{I})=0
+  \end{equation}
+
+  Thus we can get:
+
+  \begin{equation}\label{eq:050}
+    \left\{
+      \begin{aligned}
+        I_1 &= \varepsilon_x + \varepsilon_y + \varepsilon_z=\varepsilon_1 + \varepsilon_2 + \varepsilon_3\\
+        I_2 &= \varepsilon_x \varepsilon_y + \varepsilon_y \varepsilon_z + \varepsilon_z \varepsilon_x - \varepsilon_{xy}^2 - \varepsilon_{yz}^2 - \varepsilon_{zx}^2 = \varepsilon_1 \varepsilon_2 + \varepsilon_2 \varepsilon_3 + \varepsilon_3 \varepsilon_1\\
+        I_3 &= \varepsilon_x \varepsilon_y \varepsilon_z + 2 \varepsilon_{xy} \varepsilon_{yz} \varepsilon_{zx} - \varepsilon_x \varepsilon_{yz}^2 - \varepsilon_y \varepsilon_{zx}^2 - \varepsilon_z \varepsilon_{xy}^2 = \varepsilon_1 \varepsilon_2 \varepsilon_3
+      \end{aligned}
+    \right.
+  \end{equation}
+
 
 \end{document}
