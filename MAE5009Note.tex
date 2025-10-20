@@ -698,9 +698,409 @@
     \right.
   \end{equation}
 
-  \subsection{Assupmtions}
-  Linear elastic, isotropic, homogeneous, linear stress-strain relations.
+  \subsection{Assumptions}\label{subsec:03.01}
 
+    Linear elastic, isotropic, homogeneous, linear stress-strain relations.
+
+    \begin{itemize}
+      \item \textbf{Linear elastic}: Regain its original dimensions after unloading
+      \item \textbf{Isotropic}: Properties are the same in any directions
+      \item \textbf{Homogeneous}: Properties are independent of position
+    \end{itemize}
+
+  \subsection{Generalized Hooke's Law}\label{subsec:03.02}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/014.png}
+      \caption{Differential Element under loading and unloading}
+      \label{fig:014}
+    \end{figure}
+
+    For 1D elements, it follows Hooke's Law in 1D:
+
+    \begin{equation}\label{eq:054}
+      \sigma_x = E \varepsilon_x
+    \end{equation}
+
+    where, $E$ is the \textbf{Modulus of Elasticity} or \textbf{Young's Modulus}.
+
+    And for 3D elements, it follows Generalized Hooke's Law in 3D:
+
+    \begin{equation}\label{eq:055}
+      \begin{bmatrix}
+        \sigma_x \\
+        \sigma_y \\
+        \sigma_z \\
+        \tau_{xy} \\
+        \tau_{yz} \\
+        \tau_{zx}
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        c_{11} & c_{12} & c_{13} & c_{14} & c_{15} & c_{16} \\
+        c_{21} & c_{22} & c_{23} & c_{24} & c_{25} & c_{26} \\
+        c_{31} & c_{32} & c_{33} & c_{34} & c_{35} & c_{36} \\
+        c_{41} & c_{42} & c_{43} & c_{44} & c_{45} & c_{46} \\
+        c_{51} & c_{52} & c_{53} & c_{54} & c_{55} & c_{56} \\
+        c_{61} & c_{62} & c_{63} & c_{64} & c_{65} & c_{66}
+      \end{bmatrix}
+      \begin{bmatrix}
+        \varepsilon_x \\
+        \varepsilon_y \\
+        \varepsilon_z \\
+        \gamma_{xy} \\
+        \gamma_{yz} \\
+        \gamma_{zx}
+      \end{bmatrix}
+    \end{equation}
+
+    For homogeneous material, $c_{ij}$ are independent of position, and thus are constants, or elastic constants.
+
+    For anisotropic material, $c_{ij}=c_{ji}$, so there are in total 21 independent elastic constants.
+
+    For orthotropic material, $c_{15} = c_{16} = c_{25} = c_{26} = 0, \quad c_{35} = c_{36} = c_{45} = c_{46} = 0, \quad c_{14} = c_{24} = c_{34} = c_{56} = 0$，so there are in total 9 independent elastic constants.
+
+    For transversely isotropic material, $c_{11}=c_{33}, \quad c_{21}=c_{23}, \quad c_{44}=c_{55}$，so there are in total 5 independent elastic constants.
+
+    For isotropic material, $c_{11} = c_{22} = c_{33}, \quad c_{12} = c_{13} = c_{23}, \quad c_{44} = c_{55} = c_{66}$，so there are in total 2 independent elastic constants, which is $E$ and $\nu$.
+
+    \textbf{Poisson's ratio} $\nu$ is defined as:
+
+    \begin{equation}\label{eq:056}
+      \nu = -\frac{\varepsilon_{trans}}{\varepsilon_{axial}}
+    \end{equation}
+
+    $\varepsilon_{trans}$ is the strain on the perpendicular direction of the compression. 
+
+    $\varepsilon_{axial}$ is the strain on the axial direction of the compression.
+
+    The Poisson's ratio of a stable, isotropic, linear elastic material must be between $-1.0$ and $+0.5$.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/015.png}
+      \caption{Axial load}
+      \label{fig:015}
+    \end{figure}
+
+    As shown in \cref{fig:015}, under axial load, the strain in three directions can be calculated by:
+
+    \begin{equation}\label{eq:057}
+      \left\{
+      \begin{aligned}
+        \sigma_x=E\cdot \varepsilon_x\\
+        \nu = - \frac{\varepsilon_y}{\varepsilon_x} = - \frac{\varepsilon_z}{\varepsilon_x}
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    For isotropic materials, normal stress only cause normal strain, and shear stress only cause shear strain.
+
+  \subsection{Normal stress VS Normal Strain}\label{subsec:03.03}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/016.png}
+      \caption{Normal Stress in 3 directions}
+      \label{fig:016}
+    \end{figure}
+
+    Assuming that in the beginning, the dimensions of 3 axises are $L_x=L_y=L_z=1$，after applying three stress in x, y, z directions, the dimensions become $L_x', L_y', L_z'$. As shown in \cref{fig:016}, we have:
+
+    \begin{equation}\label{eq:058}
+      \left\{
+      \begin{aligned}
+        L_x' = (1+\varepsilon_x)L_x = \left(1-\nu\frac{\sigma_z}{E}\right)\left(1-\nu\frac{\sigma_y}{E}\right)\left(1+\frac{\sigma_x}{E}\right) \\
+        L_y' = (1+\varepsilon_y)L_y = \left(1-\nu\frac{\sigma_z}{E}\right)\left(1+\frac{\sigma_y}{E}\right)\left(1-\nu\frac{\sigma_x}{E}\right) \\
+        L_z' = (1+\varepsilon_z)L_z = \left(1+\frac{\sigma_z}{E}\right)\left(1-\nu\frac{\sigma_y}{E}\right)\left(1-\nu\frac{\sigma_x}{E}\right)
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    Thus, we can get the relation between normal stress and normal strain:
+
+    \begin{equation}\label{eq:059}
+      \left\{
+      \begin{aligned}
+        \varepsilon_x = \frac{L_x - L_{x0}}{L_{x0}} = \frac{1}{E}\left(\sigma_x - \nu(\sigma_y + \sigma_z)\right) \\
+        \varepsilon_y = \frac{L_y - L_{y0}}{L_{y0}} = \frac{1}{E}\left(\sigma_y - \nu(\sigma_x + \sigma_z)\right) \\
+        \varepsilon_z = \frac{L_z - L_{z0}}{L_{z0}} = \frac{1}{E}\left(\sigma_z - \nu(\sigma_x + \sigma_y)\right)
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    Also, it can be written in the matrix form:
+
+    \begin{equation}\label{eq:060}
+      \begin{bmatrix}
+        \varepsilon_x \\
+        \varepsilon_y \\
+        \varepsilon_z
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        \frac{1}{E} & -\frac{\nu}{E} & -\frac{\nu}{E} \\
+        -\frac{\nu}{E} & \frac{1}{E} & -\frac{\nu}{E} \\
+        -\frac{\nu}{E} & -\frac{\nu}{E} & \frac{1}{E}
+      \end{bmatrix}
+      \begin{bmatrix}
+        \sigma_x \\
+        \sigma_y \\
+        \sigma_z
+      \end{bmatrix}
+    \end{equation}
+
+  \subsection{Shear stress VS Shear Strain}\label{subsec:03.04}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/017.png}
+      \caption{Shear Stress in a body}
+      \label{fig:017}
+    \end{figure}
+
+    The relationship between shear stress and shear strain:
+
+    \begin{equation}\label{eq:061}
+      \left\{
+      \begin{aligned}
+        \gamma_{xy} = \frac{1}{G} \tau_{xy} \\
+        \gamma_{yz} = \frac{1}{G} \tau_{yz} \\
+        \gamma_{zx} = \frac{1}{G} \tau_{zx}
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    where, $G$ is the \textbf{Shear Modulus} or \textbf{Modulus of Rigidity}.
+
+    Also, it can be written in the matrix form:
+
+    \begin{equation}\label{eq:062}
+      \begin{bmatrix}
+        \gamma_{xy} \\
+        \gamma_{yz} \\
+        \gamma_{zx}
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        \frac{1}{G} & 0 & 0 \\
+        0 & \frac{1}{G} & 0 \\
+        0 & 0 & \frac{1}{G}
+      \end{bmatrix}
+      \begin{bmatrix}
+        \tau_{xy} \\
+        \tau_{yz} \\
+        \tau_{zx}
+      \end{bmatrix}
+    \end{equation}
+
+    Correspondingly, we have the relations between strain and stress:
+
+    \begin{equation}\label{eq:064}
+      \left\{
+      \begin{aligned}
+        \sigma_x &= 2G \varepsilon_x + \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z) \\
+        \sigma_y &= 2G \varepsilon_y + \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z) \\
+        \sigma_z &= 2G \varepsilon_z + \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z)
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        \tau_{xy} &= G \gamma_{xy} \\
+        \tau_{yz} &= G \gamma_{yz} \\
+        \tau_{zx} &= G \gamma_{zx}
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    And for the relations between $E, G$, $\nu$ and $\lambda$, we have:
+
+    \begin{equation}\label{eq:063}
+      G = \frac{E}{2(1+\nu)}, \quad \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}
+    \end{equation}
+
+    where, $\lambda$ is the \textbf{Lamé constants}.
+
+  \subsection{Decomposition of stress}\label{subsec:03.05}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/018.png}
+      \caption{Decomposition of stress}
+      \label{fig:018}
+    \end{figure}
+
+    As shown in \cref{fig:018}, the stress tensor can be decomposed into hydrostatic stress and deviatoric stress in $\sigma_{ij} = \sigma_m \cdot \delta_{ij} + S_{ij}$, $i,j =x,y,z$, $\delta_ij$ is Kronecker delta function, only when $i=j$, $\delta_{ij}=1$, otherwise, $\delta_{ij}=0$.
+
+    \begin{equation}\label{eq:065}
+      \begin{bmatrix}
+        \sigma_x & \tau_{xy} & \tau_{xz} \\
+        \tau_{yx} & \sigma_y & \tau_{yz} \\
+        \tau_{zx} & \tau_{zy} & \sigma_z
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        \sigma_m & & \\
+        & \sigma_m & \\
+        & & \sigma_m
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+        \sigma_x - \sigma_m & \tau_{xy} & \tau_{xz} \\
+        \tau_{yx} & \sigma_y - \sigma_m & \tau_{yz} \\
+        \tau_{zx} & \tau_{zy} & \sigma_z - \sigma_m
+      \end{bmatrix}
+    \end{equation}
+
+    Normally, $\displaystyle \sigma_m = \frac{\sigma_x + \sigma_y + \sigma_z}{3} = \frac{I_1}{3}$.
+
+    Similarly, the strain tensor can also be decomposed into volumetric strain and deviatoric strain in $\varepsilon_{ij} = \varepsilon_m \cdot \delta_{ij} + e_{ij}$, $i,j =x,y,z$.
+
+    \begin{equation}\label{eq:066}
+      \begin{bmatrix}
+        \varepsilon_x & \varepsilon_{xy} & \varepsilon_{xz} \\
+        \varepsilon_{yx} & \varepsilon_y & \varepsilon_{yz} \\
+        \varepsilon_{zx} & \varepsilon_{zy} & \varepsilon_z
+      \end{bmatrix}
+      =
+      \begin{bmatrix}
+        \varepsilon_m & & \\
+        & \varepsilon_m & \\
+        & & \varepsilon_m
+      \end{bmatrix}
+      +
+      \begin{bmatrix}
+        \varepsilon_x - \varepsilon_m & \varepsilon_{xy} & \varepsilon_{xz} \\
+        \varepsilon_{yx} & \varepsilon_y - \varepsilon_m & \varepsilon_{yz} \\
+        \varepsilon_{zx} & \varepsilon_{zy} & \varepsilon_z - \varepsilon_m
+      \end{bmatrix}
+    \end{equation}
+
+    Normally, $\displaystyle \varepsilon_m = \frac{\varepsilon_x + \varepsilon_y + \varepsilon_z}{3} = \frac{I_1'}{3}$.
+
+  \subsection{Bulk modulus of elasticity}\label{subsec:03.06}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/019.png}
+      \caption{Bulk modulus of elasticity}
+      \label{fig:019}
+    \end{figure}
+
+    \begin{equation}\label{eq:067}
+      \sigma_x = \sigma_y = \sigma_z = -p\Rightarrow \varepsilon_x = \varepsilon_y = \varepsilon_z = - \frac{1-2\nu}{E} p
+    \end{equation}
+
+    \begin{equation}\label{eq:068}
+      \tau_{xy} = \tau_{yz} = \tau_{zx} = 0 \Rightarrow \gamma_{xy} = \gamma_{yz} = \gamma_{zx} = 0
+    \end{equation}
+
+    After deformation,
+
+    \begin{equation}\label{eq:069}
+      \left\{
+      \begin{aligned}
+        l_x=(1+\varepsilon_x)dx\\
+        l_y=(1+\varepsilon_y)dy\\
+        l_z=(1+\varepsilon_z)dz
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    Thus, the new volume is:
+
+    \begin{equation}\label{eq:070}
+      V' = l_x l_y l_z = (1+\varepsilon_x)(1+\varepsilon_y)(1+\varepsilon_z)dx dy dz
+    \end{equation}
+
+    By ignoring the higher order small quantities, we have:
+
+    \begin{equation}\label{eq:071}
+      V' = (1+\varepsilon_x + \varepsilon_y + \varepsilon_z) dx dy dz
+    \end{equation}
+
+    Thus, the percentage change in volume is:
+
+    \begin{equation}\label{eq:072}
+      \begin{aligned}
+        \frac{\Delta V} {V} &= \frac{V' - V}{V} = \varepsilon_x + \varepsilon_y + \varepsilon_z \\
+        &= \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z}\\
+        &= - \frac{3(1-2\nu)}{E} =-\frac{1}{K} p
+      \end{aligned}
+      \Rightarrow K = \frac{E}{3(1-2\nu)}
+    \end{equation}
   
+    where, $K$ is the \textbf{Bulk Modulus of Elasticity}.
+
+  \subsection{Plane stress/strain}\label{subsec:03.07}
+
+    For thin flat plates acted upon only by load forces that are parallel to them, the stress analysis can be considerably simplified to \textbf{plane stress}.
+
+    Stress components perpendicular to the plate are negligible compared to those parallel to it.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/020.png}
+      \caption{Plane stress}
+      \label{fig:020}
+    \end{figure}
+
+    As $x>>z$, we have $\sigma_z=\tau_{xz}=\tau_{yz}=0$, thus, the strain components are:
+
+    \begin{equation}\label{eq:073}
+      \left\{
+      \begin{aligned}
+        \varepsilon_x &= \frac{1}{E}(\sigma_x - \nu \sigma_y) \\
+        \varepsilon_y &= \frac{1}{E}(\sigma_y - \nu \sigma_x) \\
+        \varepsilon_z &= -\frac{\nu}{E}(\sigma_x + \sigma_y) 
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        \gamma_{xy} &= \frac{1}{G} \tau_{xy}\\
+        \gamma_{yz} &= 0 \\
+        \gamma_{zx} &= 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    If one dimension is very large compared to the others, the principal strain in the direction of the longest dimension is constrained and can be assumed as zero, the stress analysis can be considerably simplified to \textbf{plane strain}.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/021.png}
+      \caption{Plane strain}
+      \label{fig:021}
+    \end{figure}
+
+    As $z>>x,y$, we have $\varepsilon_z=\gamma_{yz}=\gamma_{zx}=0$, thus, the stress components are:
+
+    \begin{equation}\label{eq:074}
+      \left\{
+      \begin{aligned}
+        \sigma_x &= 2G \varepsilon_x + \lambda(\varepsilon_x + \varepsilon_y) \\
+        \sigma_y &= 2G \varepsilon_y + \lambda(\varepsilon_x + \varepsilon_y) \\
+        \sigma_z &= \lambda(\varepsilon_x + \varepsilon_y)
+      \end{aligned}
+      \right.
+      , \quad
+      \left\{
+      \begin{aligned}
+        \tau_{xy} &= G \gamma_{xy}\\
+        \tau_{yz} &= 0 \\
+        \tau_{zx} &= 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+
+\section{Formulation of Problems in Elasticity}\label{sec:04}
+
+
+
+
 
 \end{document}
