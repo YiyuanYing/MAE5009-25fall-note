@@ -1098,9 +1098,121 @@
 
 
 \section{Formulation of Problems in Elasticity}\label{sec:04}
+  \subsection{Boundary conditions}\label{subsec:04.01}
 
+    There are two types of boundary conditions in elasticity problems:\textbf{Displacement Boundary} and \textbf{Stress Boundary}.
 
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/022.png}
+      \caption{Boundary conditions}
+      \label{fig:022}
+    \end{figure}
 
+    At boundary point $(x_0, y_0, z_0)$, we have unit outward normal $\mathbf{\mu}=(\mu_x, \mu_y, \mu_z)$ and surface force $(T_x^{\mu}, T_y^{\mu}, T_z^{\mu})$.
 
+    The displpacement boundary condition is:
+
+    \begin{equation}\label{eq:075}
+      \left\{
+      \begin{aligned}
+        u(x_0, y_0, z_0) = u_b \\
+        v(x_0, y_0, z_0) = v_b \\
+        w(x_0, y_0, z_0) = w_b
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    And the stress boundary condition is:
+
+    \begin{equation}\label{eq:076}
+      \left\{
+      \begin{aligned}
+        T_x^{\mu} = \sigma_{x|0} \mu_x + \tau_{yx|0} \mu_y + \tau_{zx|0} \mu_z \\
+        T_y^{\mu} = \tau_{xy|0} \mu_x + \sigma_{y|0} \mu_y + \tau_{zy|0} \mu_z \\
+        T_z^{\mu} = \tau_{xz|0} \mu_x + \tau_{yz|0} \mu_y + \sigma_{z|0} \mu_z
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/023.png}
+      \caption{Stress boundary condition}
+      \label{fig:023}
+    \end{figure}
+
+    For the condition shown in \cref{fig:023}, it's first boundary-value problem, where: $T_x^{\mu} = \pm p, T_y^{\mu} = T_z^{\mu} = 0$.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/024.png}
+      \caption{Displacement boundary condition}
+      \label{fig:024}
+    \end{figure}
+
+    For the condition shown in \cref{fig:024}, it's second boundary-value problem, where: $u_b = v_b = w_b = 0$.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/025.png}
+      \caption{Mixed boundary condition}
+      \label{fig:025}
+    \end{figure}
+
+    For the condition shown in \cref{fig:025}, it's mixed boundary-value problem.
+
+  \subsection{Plane strain problem}\label{subsec:04.02}
+    
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.6\textwidth]{image/026.png}
+      \caption{Plane strain problem}
+      \label{fig:026}
+    \end{figure}
+
+    As shown in the \cref{eq:074}, and conbining with the equilibrium equations, we can have the displacement equation:
+    
+    \begin{equation}\label{eq:077}
+      \left\{
+      \begin{aligned}
+        G \nabla^2 u+(\lambda+G) \frac{\partial}{\partial x}(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}) + f_x = 0 \\
+        G \nabla^2 v+(\lambda+G) \frac{\partial}{\partial y}(\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}) + f_y = 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    where, $\displaystyle \nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}$.
+
+    Also, the \cref{eq:077} can be written in:
+
+    \begin{equation}\label{eq:078}
+      G \nabla^2 \mathbf{u} + (\lambda + G) \nabla (\nabla \cdot \mathbf{u}) + \mathbf{f} = 0, \nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}
+    \end{equation}
+    
+    By conbining with the stress-strain relations and the strain compatibillity equations, we can have the stress equations:
+
+    \begin{equation}\label{eq:079}
+      \nabla^2 (\sigma_x+\sigma_y) = -(1+\nu)\left( \frac{\partial f_x}{\partial x} + \frac{\partial f_y}{\partial y}\right)
+    \end{equation}
+
+  \subsection{Miscellaneous}\label{subsec:04.03}
+    \subsubsection{Principal of superposition}\label{subsubsec:04.03.01}
+
+      Two or more stresses fields may be superposed to yield the results for combined loads.
+
+      Only when displacements and strains are small and the strain-displacement, stress-strain equations are linear.
+
+      \begin{equation}\label{eq:080}
+        f_1\rightarrow u_1, f_2\rightarrow u_2 \Rightarrow f_1+f_2 \rightarrow u_1 + u_2
+      \end{equation}
+
+    \subsubsection{Uniqueness of elasticity solutions}\label{subsubsec:04.03.02}
+
+      For a given surface force and body force distribution, there is only one solution for the stress components consistent with equilibrium and compatibility
+
+\section{Two-Dimensional Problems}\label{sec:05}
+  
+      
 
 \end{document}
