@@ -640,7 +640,6 @@
     \right.
   \end{equation}
 
-
 \section{Stress Strain Relations}\label{sec:03}
 
   So far we have unknowns for 6 stress, 6 strain and 3 displacement components:
@@ -1096,7 +1095,6 @@
       \right.
     \end{equation}
 
-
 \section{Formulation of Problems in Elasticity}\label{sec:04}
   \subsection{Boundary conditions}\label{subsec:04.01}
 
@@ -1212,7 +1210,118 @@
       For a given surface force and body force distribution, there is only one solution for the stress components consistent with equilibrium and compatibility
 
 \section{Two-Dimensional Problems}\label{sec:05}
-  
-      
+
+  \subsection{Plane Stress}\label{sec:05.01}
+    For the plane stress problem shown in \cref{fig:026}, we have displacement in $u=u(x,y), v=v(x,y)$, strain-displacement in:
+
+    \begin{equation}\label{eq:081}
+      \left\{
+      \begin{aligned}
+        \varepsilon_x &= \frac{\partial u}{\partial x} \\
+        \varepsilon_y &= \frac{\partial v}{\partial y} \\
+        \varepsilon_{z} &= -\frac{\nu}{E}(\sigma_x + \sigma_y) \\
+      \end{aligned}
+      \right., \quad
+      \left\{
+      \begin{aligned}
+        \gamma_{xy} &= \frac{\partial u}{\partial y} + \frac{\partial v}{\partial x} \\
+        \gamma_{yz} &= 0 \\
+        \gamma_{zx} &= 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    And stress-strain in:
+
+    \begin{equation}\label{eq:082}
+      \left\{
+      \begin{aligned}
+        \sigma_x &= 2G \varepsilon_x + \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z) \\
+        \sigma_y &= 2G \varepsilon_y + \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z) \\
+        \sigma_z &= \lambda(\varepsilon_x + \varepsilon_y + \varepsilon_z) = 0 \Rightarrow \varepsilon_z = -\frac{\nu}{E}(\sigma_x + \sigma_y)
+      \end{aligned}
+      \right., \quad
+      \left\{
+      \begin{aligned}
+        \tau_{xy} &= G \gamma_{xy} \\
+        \tau_{yz} &= 0 \\
+        \tau_{zx} &= 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    Thus, the equilibrium equations become:
+
+    \begin{equation}\label{eq:083}
+      \left\{
+      \begin{aligned}
+        \frac{\partial \sigma_x}{\partial x} + \frac{\partial \tau_{yx}}{\partial y} + f_x = 0 \\
+        \frac{\partial \tau_{xy}}{\partial x} + \frac{\partial \sigma_y}{\partial y} + f_y = 0
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    With \cref{eq:081} and \cref{eq:082}, we can get:
+
+    \begin{equation}\label{eq:084}
+      \frac{\partial^2 \varepsilon_x}{\partial y^2} + \frac{\partial^2 \varepsilon_y}{\partial x^2} = \frac{\partial^2 \gamma_{xy}}{\partial x \partial y}
+    \end{equation}
+
+    And we can get compatibility equation in terms of stress in:
+
+    \begin{equation}\label{eq:085}
+      \nabla^2 (\sigma_x + \sigma_y) = -(1+\nu)\left( \frac{\partial f_x}{\partial x} + \frac{\partial f_y}{\partial y}\right)
+    \end{equation}
+
+    For problems with no or constant body force intensities, the corresponding plane strain and plane stress problems are identical, which is \textbf{Harmonic function}:
+
+    \begin{equation}\label{eq:086}
+      \nabla^2 (\sigma_x + \sigma_y) =0
+    \end{equation}
+
+    If the body force intensity is conservative, there is a potential function V such that:
+
+    \begin{equation}\label{eq:087}
+      f_{x}=\frac{\partial V}{\partial x}, \quad f_{y}=\frac{\partial V}{\partial y}
+    \end{equation}
+
+    Introduce a stress function $\phi=\phi(x,y)$, which is also known as Airy's stress function:
+
+    \begin{equation}\label{eq:088}
+      \left\{
+      \begin{aligned}
+        \sigma_{x}+V &=\frac{\partial^{2}\phi}{\partial y^{2}} \\
+        \sigma_{y}+V &= -\frac{\partial^{2}\phi}{\partial x^{2}} \\
+        \tau_{xy} &= \frac{\partial^{2}\phi}{\partial x \partial y}
+      \end{aligned}
+      \right.
+    \end{equation}
+
+    The introduction of $\phi$ implies that the equilibrium equations are identically satisfied.
+
+    The compatibility equation in terms of stress becomes:
+
+    \begin{equation}\label{eq:089}
+      \nabla^4\phi=\nabla^2(\nabla^2\phi)=(1-\nu)\nabla^2 V
+    \end{equation}
+
+    where \textbf{Biharmonic operator} is:
+
+    \begin{equation}\label{eq:090}
+      \nabla^4 = \nabla^2(\nabla^2)=\frac{\partial^4}{\partial x^4} + 2\frac{\partial^4}{\partial x^2 \partial y^2}+\frac{\partial^4}{\partial y^4}
+    \end{equation}
+
+    This is the governing field equation for plane stress problems in which the body forces are conservative. If the body force is constant, or if $V$ is a harmonic function (e.g. $\nabla^2 V = 0$):
+
+    \begin{equation}\label{eq:091}
+      \nabla^4 \phi = 0
+    \end{equation}
+
+    
+
+
+
+
+
 
 \end{document}
